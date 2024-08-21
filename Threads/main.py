@@ -1,41 +1,7 @@
-import random
 import time
 import threading
 from ordening import Ordering
-
-class Gerador:
-    """
-    Classe que implementa métodos para gerar nomes aleatórios e os salvar em um arquivo.
-    """
-    def generate_names(num_names):
-        """
-        Gera uma lista de nomes aleatórios.
-
-        Args:
-            num_names (int): Número de nomes a serem gerados.
-
-        Returns:
-            list: Lista de nomes gerados.
-        """
-        names = []
-        for _ in range(num_names):
-            name = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
-            names.append(name)
-        return names
-
-def save_to_file(names, filename):
-    """
-    Salva uma lista de nomes em um arquivo.
-
-    Args:
-        names (list): Lista de nomes a ser salva.
-        filename (str): Nome do arquivo onde os nomes serão salvos.
-    """
-    with open(filename, 'w') as file:
-        for name in names:
-            file.write(name + '\n')
-
-
+from gerador import Gerador
 
 if __name__ == '__main__':
     num_names = 1000000
@@ -43,7 +9,7 @@ if __name__ == '__main__':
 
     start_time = time.time()
     names = Gerador.generate_names(num_names)
-    save_to_file(names, filename)
+    Gerador.save_to_file(names, filename)
     end_time = time.time()
     print(f"Tempo de geração do arquivo: {end_time - start_time} segundos")
 
