@@ -1,4 +1,5 @@
 import time
+from gerador import Gerador
 
 class Ordering:
     """
@@ -13,6 +14,7 @@ class Ordering:
         """
         start_time = time.time()
         names.sort()
+        Gerador.save_to_file(names, './names_sorted_python.txt')
         end_time = time.time()
         print(f"Metodo Sort do python Terminou com {end_time - start_time} seconds")
 
@@ -68,5 +70,6 @@ class Ordering:
         """
         start_time = time.time()
         Ordering.quick(lista, 0, len(lista) - 1)
+        Gerador.save_to_file(lista, './names_sorted_quick.txt')
         end_time = time.time()
         print(f"Metodo QuickSort terminou com {end_time - start_time} seconds")
