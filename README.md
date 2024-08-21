@@ -1,0 +1,1 @@
+# Repositório para exercícios da disciplina de sistemas distribuidos
