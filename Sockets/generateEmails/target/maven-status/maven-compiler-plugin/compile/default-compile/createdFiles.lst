@@ -1,0 +1,4 @@
+com\mycompany\generateemails\client\Client.class
+com\mycompany\generateemails\server\Server.class
+com\mycompany\generateemails\entity\Pessoa.class
+com\mycompany\generateemails\GenerateEmails.class
