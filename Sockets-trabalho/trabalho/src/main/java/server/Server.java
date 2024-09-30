@@ -1,11 +1,8 @@
 package server;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Server {
     public static void main(String[] args) {
@@ -18,41 +15,11 @@ public class Server {
                 Socket client = server.accept();
                 System.out.println("Cliente conectado: " + client.getInetAddress().getHostAddress());
 
-                // Cria uma nova thread para lidar com o cliente
-                new Thread(new ClientHandler(client)).start();
+                new Thread(new MyThread(client)).start();
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
 
-class ClientHandler implements Runnable {
-    private Socket client;
-
-    public ClientHandler(Socket client) {
-        this.client = client;
-    }
-
-    @Override
-    public void run() {
-        try {
-            ObjectOutputStream saida = new ObjectOutputStream(client.getOutputStream());
-            ObjectInputStream entrada = new ObjectInputStream(client.getInputStream());
-
-            ArrayList<Integer> list = (ArrayList<Integer>) entrada.readObject();
-            Collections.sort(list);
-
-            saida.flush();
-            saida.writeObject(list);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                client.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-}

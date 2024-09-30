@@ -143,6 +143,7 @@ public class Index extends javax.swing.JFrame {
         }
         this.orderList(list);
     }//GEN-LAST:event_btn_geradorActionPerformed
+    
     private void clear(){
         this.ta_listDisorganized.setText("");
         this.ta_listSorted.setText("");
